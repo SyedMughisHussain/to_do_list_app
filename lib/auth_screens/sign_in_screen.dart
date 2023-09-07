@@ -26,12 +26,17 @@ class _SignInScreenState extends State<SignInScreen> {
         width: width,
         child: Column(
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/logo.png'))),
+            Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.cover,
+              height: height - 400,
             ),
+            // Container(
+            //   decoration: const BoxDecoration(
+            //       image: DecorationImage(
+            //           fit: BoxFit.cover,
+            //           image: AssetImage('assets/images/logo.png'))),
+            // ),
             Form(
                 child: Column(
               children: [
