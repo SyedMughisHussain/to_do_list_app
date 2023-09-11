@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AuthFunctions {
-  Future<void> signIn(BuildContext context, email, String password) async {
+  Future<void> signIn(
+      BuildContext context, String email, String password) async {
     // String errorMessage;
     try {
       await FirebaseAuth.instance
@@ -13,14 +14,15 @@ class AuthFunctions {
     }
   }
 
-  Future<void> signUp(
-      BuildContext context, email, String userName, String password) async {
+  Future<void> signUp(BuildContext context, String email, String userName,
+      String password) async {
+    UserCredential? userCredential;
     try {
-      await FirebaseAuth.instance
+      userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
       await FirebaseFirestore.instance
           .collection('users')
-          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .doc(userCredential.user!.uid)
           .set({
         'userEmail': email,
         'userName': userName,

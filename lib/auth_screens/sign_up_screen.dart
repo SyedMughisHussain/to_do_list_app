@@ -12,23 +12,24 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  void onSaved() {
-    final isValid = _formKey.currentState!.validate();
-    FocusScope.of(context).unfocus();
-    if (isValid) {
-      _formKey.currentState!.save();
-      authFunctions.signUp(context, email, password, userName);
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const HomePage()));
-    }
-  }
-
   var email = '';
   var password = '';
   var userName = '';
   bool showPassword = false;
   final _formKey = GlobalKey<FormState>();
   AuthFunctions authFunctions = AuthFunctions();
+
+  void onSaved() {
+    final isValid = _formKey.currentState!.validate();
+    FocusScope.of(context).unfocus();
+    if (isValid) {
+      _formKey.currentState!.save();
+      authFunctions.signUp(context, email, userName, password);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const HomePage()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
